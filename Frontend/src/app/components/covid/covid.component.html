@@ -1,0 +1,118 @@
+
+<br>
+
+<div class= pag>
+<div class="general">
+  <div align="center"><img src="https://i.postimg.cc/RZkbWYWs/logo.png"></div>
+
+
+  <br>
+  <br>
+  <div id="left">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Género</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>¿Casado?</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Dependientes</mat-label>
+        <input matInput placeholder="Número de personas a cargo">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Educación</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>¿Independiente?</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Ingresos solicitante</mat-label>
+        <input matInput placeholder="Valor en números">
+      </mat-form-field>
+
+    </p>
+  </div>
+
+  <div id="right">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Ingresos codeudor</mat-label>
+        <input matInput placeholder="Valor en números">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Monto prestamos</mat-label>
+        <input matInput placeholder="Valor en números">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Plazo prestamo</mat-label>
+        <input matInput placeholder="Valor en números">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>¿Historial crediticio?</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Vivienda</mat-label>
+        <input matInput placeholder="1-0">
+      </mat-form-field>
+
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Localidad</mat-label>
+        <input matInput placeholder="0-1-2-3">
+      </mat-form-field>
+
+    </p>
+ 
+  </div>
+  <BR>
+    <br>
+
+
+  <button mat-raised-button color="primary" class="boton">Predecir</button>
+
+  <br>
+  <br>
+  <div class="respuesta">
+
+    <mat-list role="list" class="lista-respuesta">
+      <mat-list-item role="listitem" *ngFor="let respuesta of nl">
+        <mat-card class="respuesta"><b>{{respuesta.type|json}}</b></mat-card>
+      </mat-list-item>
+    </mat-list>             
+   
+  </div>
+
+</div>
+
+</div>
