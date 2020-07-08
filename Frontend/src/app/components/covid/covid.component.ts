@@ -16,14 +16,17 @@ export class CovidComponent implements OnInit {
 
   loading
 
-  private URL_NL = 'http://localhost:3000/api/';
+  private URL = 'http://localhost:3000/api/';
 
   txt
   textModelo
   nl
   texto: any [] = [];
-  valores: any[];
+
   
+
+  
+
 
 
   public form = {
@@ -43,9 +46,16 @@ export class CovidComponent implements OnInit {
 
 PostAutoIA(){
 
-  this.form.input_data.values [0] = (this.valores)
+  var a = this.texto.map(function(item) {
+    return parseInt(item, 10);
+    
+});
+
+this.form.input_data[0].values [0]  = (a)
+console.log(this.form);
+
   console.log(this.form);
-  this.httpClient.post<any>(`${this.URL_NL}upload-text`, this.form).subscribe(
+  this.httpClient.post<any>(`${this.URL}upload-text`, this.form).subscribe(
     (res) => {
       this.textModelo=res
     
@@ -56,21 +66,8 @@ PostAutoIA(){
     },
   );
 
-}
 
-prueba(){
+  }
 
- 
-  var a = this.texto.map(function(item) {
-    return parseInt(item, 10);
-    
-});
-
-this.form.input_data.values [0]  = (a)
-console.log(this.form);0
-
-
-
-}
 
 }

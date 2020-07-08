@@ -100,7 +100,7 @@
     <br>
 
 
-  <button mat-raised-button color="primary" class="boton" (click)="prueba()" >Predecir</button>
+  <button mat-raised-button color="primary" class="boton" (click)="PostAutoIA()" >Predecir</button>
 
   <br>
   <br>
@@ -108,12 +108,11 @@
 
   <div class="respuesta">
 
-    <mat-list role="list" class="lista-respuesta">
-      <mat-list-item role="listitem" *ngFor="let respuesta of nl">
-        <mat-card class="respuesta"><b>{{respuesta.type|json}}</b></mat-card>
-      </mat-list-item>
-    </mat-list>             
-   
+ 
+      <mat-card-content>
+     
+      </mat-card-content>
+    
   </div>
 
 </div>
