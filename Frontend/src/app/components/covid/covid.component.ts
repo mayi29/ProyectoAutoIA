@@ -19,24 +19,19 @@ export class CovidComponent implements OnInit {
   private URL_NL = 'http://localhost:3000/api/';
 
   txt
-  textnl
+  textModelo
   nl
-  loading2
+  texto: any [] = [];
+  valores: any[];
+  
 
-  data_twitter=[];
 
   public form = {
-    text: null
-  }
 
-  public form1 = {
-    bucket: "covid-19-2020",
-    name: null
-  }
+    input_data: [{fields: ["Gender", "Married", "Dependents", "Education", "Self_Employed", "ApplicantIncome", "CoapplicantIncome", "LoanAmount", "Loan_Term", "Credit_History_Available", "Housing", "Locality"],
+     values: [[]] }]
 
-  public formtwitter={
-
-    hashtag: null
+  
   }
 
 
@@ -45,71 +40,37 @@ export class CovidComponent implements OnInit {
   ngOnInit(): void {
   }
 
-PostNL(){
+
+PostAutoIA(){
+
+  this.form.input_data.values [0] = (this.valores)
   console.log(this.form);
-  this.loading = true
   this.httpClient.post<any>(`${this.URL_NL}upload-text`, this.form).subscribe(
     (res) => {
-      this.textnl=res
-      this.loading = false
-    },
-    (err) => {
-      this.loading = false
-      console.log(err)
-    },
-  );
-
-}
-
-PostNLObjectStorages(){
-  this.loading = true
-  console.log(this.form1);
-  const options = {responseType: 'text' as 'json'}
-  this.httpClient.post<any>(`${this.URL_NL}list`, this.form1, options).subscribe(
-    (res) => {
-      this.loading = false
-      this.txt=res
-    },
-    (err) => {
-      this.loading = false
-      console.log(err)
-    },
-  );
-}
-
-
-ObjectNL(){
-  this.loading2 = true
-  console.log(this.txt);
-  var entrada = {"text":this.txt}
-  this.httpClient.post<any>(`${this.URL_NL}upload-text`, entrada).subscribe(
-    (res) => {
-      this.loading2 = false
-      this.nl=res
-    },
-    (err) => {
-      this.loading2 = false
-      console.log(err)
-    },
+      this.textModelo=res
     
-);
-}
-
-GetTwitts(){
-  this.loading = true
-  this.data_twitter = []
-  this.httpClient.get<any>(`${this.URL_NL}tweets/`+ this.formtwitter.hashtag).subscribe(
-    (res) => {
-      this.loading = false
-      this.data_twitter.push(res)
-  console.log(res) },
-    (err) => { 
-    this.loading = false
-    console.log(err) 
-  },
+    },
+    (err) => {
+   
+      console.log(err)
+    },
   );
 
 }
 
+prueba(){
+
+ 
+  var a = this.texto.map(function(item) {
+    return parseInt(item, 10);
+    
+});
+
+this.form.input_data.values [0]  = (a)
+console.log(this.form);0
+
+
+
+}
 
 }
