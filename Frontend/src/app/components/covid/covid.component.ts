@@ -21,51 +21,61 @@ export class CovidComponent implements OnInit {
   txt
   textModelo
   nl
-  texto: any [] = [];
+  texto: any[] = [];
 
-  
 
-  
+
+
 
 
 
   public form = {
 
-    input_data: [{fields: ["Gender", "Married", "Dependents", "Education", "Self_Employed", "ApplicantIncome", "CoapplicantIncome", "LoanAmount", "Loan_Term", "Credit_History_Available", "Housing", "Locality"],
-     values: [[]] }]
+    input_data: [{
+      fields: ["Gender", "Married", "Dependents", "Education", "Self_Employed", "ApplicantIncome", "CoapplicantIncome", "LoanAmount", "Loan_Term", "Credit_History_Available", "Housing", "Locality"],
+      values: [[]]
+    }]
 
-  
+
   }
 
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) {}
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
+  x="";
+  respuesta = [];
+  PostAutoIA() {
+
+    var a = this.texto.map(function (item) {
+      return parseInt(item, 10);
+
+    });
+    this.form.input_data[0].values[0] = (a)
+    console.log(this.form);
+    var datos = JSON.stringify(this.form)
 
 
-PostAutoIA(){
+    var salida = {
+      "text": datos
+    }
 
-  var a = this.texto.map(function(item) {
-    return parseInt(item, 10);
-    
-});
+    console.log(datos);
+    this.httpClient.post<any>(`${this.URL}upload-text`, salida).subscribe(
+      (res) => {
 
-this.form.input_data[0].values [0]  = (a)
-console.log(this.form);
+        this.textModelo = res
+        this.respuesta.push(res)
+        this.x =JSON.stringify(res.predictions[0].values)
+        
+        console.log(res)
+      },
+      (err) => {
 
-  console.log(this.form);
-  this.httpClient.post<any>(`${this.URL}upload-text`, this.form).subscribe(
-    (res) => {
-      this.textModelo=res
-    
-    },
-    (err) => {
-   
-      console.log(err)
-    },
-  );
-
+        console.log(err)
+      },
+    );
 
   }
 
